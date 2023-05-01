@@ -2269,5 +2269,5 @@ function DeepLTranslator(options) {
     const apiKey = '';
     return new DeepLTranslator$1({ ...options, apiKey });
 }
-DeepLTranslator.__proto = DeepLTranslator$1;
+DeepLTranslator.__proto__ = DeepLTranslator$1;
 DeepLTranslator;

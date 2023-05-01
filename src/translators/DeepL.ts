@@ -7,6 +7,6 @@ function DeepLTranslator(options: DeepLTranslatorOptions) {
 	return new BaseDeepLTranslator({ ...options, apiKey });
 }
 
-DeepLTranslator.__proto = BaseDeepLTranslator;
+DeepLTranslator.__proto__ = BaseDeepLTranslator;
 
 DeepLTranslator;
