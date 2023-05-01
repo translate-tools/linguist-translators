@@ -26,3 +26,11 @@ Generated code may looks bloated, but this code have support.
 
 - Alternative [Google translator](./translators/generated/GoogleTokenFree.js) implementation. Try it if you are not satisfied with embedded google translator
 - [DeepL](./translators/generated/DeepL.js) - translator for service [deepl.com](https://www.deepl.com). You need your personal [API key](https://www.deepl.com/account/summary) to use it
+
+# Contribution
+
+To build translators:
+- install packages `npm install`
+- build with `npm run build`
+
+If you found bugs, please [create issue](https://github.com/translate-tools/linguist-translators/issues/new) with detailed description problem you have
