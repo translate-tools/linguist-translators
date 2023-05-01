@@ -1,0 +1,23 @@
+{
+	"name": "@translate-tools/linguist-translators",
+	"version": "0.0.1",
+	"description": "Translators for Linguist",
+	"license": "Apache-2.0",
+	"author": "Robert Vitonsky <https://github.com/vitonsky>",
+	"scripts": {
+		"build": "rm -Rf translators/generated && rollup -c ./rollup.config.mjs",
+		"test": "jest"
+	},
+	"dependencies": {
+		"@translate-tools/core": "^0.2.14"
+	},
+	"devDependencies": {
+		"@rollup/plugin-commonjs": "^24.1.0",
+		"@rollup/plugin-node-resolve": "^15.0.2",
+		"@rollup/plugin-typescript": "^11.1.0",
+		"glob": "^10.2.2",
+		"rollup": "^3.21.2",
+		"tslib": "^2.5.0",
+		"typescript": "^4.3.2"
+	}
+}

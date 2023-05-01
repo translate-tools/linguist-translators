@@ -1,0 +1,33 @@
+{
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"moduleResolution": "nodenext",
+		"esModuleInterop": true,
+		"strict": true,
+		"alwaysStrict": true,
+		"strictFunctionTypes": true,
+		"strictNullChecks": true,
+		"strictPropertyInitialization": true,
+		"forceConsistentCasingInFileNames": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"declaration": false,
+		"downlevelIteration": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"pretty": true,
+		"preserveConstEnums": true,
+		"removeComments": false,
+		"sourceMap": true,
+		"lib": ["es2020", "dom"],
+		"skipLibCheck": true,
+		"rootDir": ".",
+		"allowJs": true
+	},
+	"include": ["src/**/*.ts", "src/*.ts"]
+}
