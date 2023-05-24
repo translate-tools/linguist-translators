@@ -26,7 +26,7 @@ Generated code may looks bloated, but this code have support.
 
 - Alternative [Google translator](./translators/generated/GoogleTokenFree.js) implementation. Try it if you are not satisfied with embedded google translator
 - [DeepL](./translators/generated/DeepL.js) - translator for service [deepl.com](https://www.deepl.com). You have to insert your personal [API key](https://www.deepl.com/account/summary) on bottom of translator code
-	- **WARNING:** with DeepL you pay for each character of translated text. **If you will use DeepL translator with Linguist to translate pages**, it can cost a fortune, because [random wikipedia page](https://en.wikipedia.org/wiki/2022_World_Snooker_Championship) contains 1262634 characters, so **you will pay 1.8 EUR (`0.00002 * 88267`) per ONE wikipedia page**
+	- **WARNING:** with DeepL you pay for each character of translated text. **If you will use DeepL translator with Linguist to translate pages**, it can cost a fortune, because [random wikipedia page](https://en.wikipedia.org/wiki/2022_World_Snooker_Championship) contains *88267* characters, so **you will pay 1.8 EUR (`0.00002 * 88267`) per ONE wikipedia page**
 
 # Contribution
 
