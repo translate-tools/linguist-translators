@@ -9,8 +9,8 @@ class ChatGPTTranslator {
         if (!text) return '';
 
         const prompt = (from === 'auto' || from === '')
-            ? `Translate to ${to}. Reply in JSON: {"translation": "translated text"}. No explanations. No comments. Guess the source language.\n\nText: "${text}"`
-            : `Translate from ${from} to ${to}. Reply in JSON: {"translation": "translated text"}. No explanations. No comments. Guess the source language.\n\nText: "${text}"`;
+            ? `Translate text to ${to}. Only return the translation without any additional text:\n\n${text}`
+            : `Translate text from ${from} to ${to}. Only return the translation without any additional text:\n\n${text}`;
 
         try {
             const response = await fetch(this.apiUrl, {
@@ -33,13 +33,7 @@ class ChatGPTTranslator {
                 return '';
             }
 
-            try {
-                const parsed = JSON.parse(data.choices[0].message.content);
-                return parsed.translation || '';
-            } catch (e) {
-                console.error("Failed to parse translation response:", data.choices[0].message.content);
-                return '';
-            }
+            return data.choices[0].message.content.trim();
 
         } catch (error) {
             console.error("Translation request failed:", error);
@@ -73,34 +67,11 @@ class ChatGPTTranslator {
     }
 
     static getSupportedLanguages() {
-    return [
-        'en',  // English
-        'ru',  // Russian
-        'de',  // German
-        'fr',  // French
-        'es',  // Spanish
-        'it',  // Italian
-        'pt',  // Portuguese
-        'nl',  // Dutch
-        'pl',  // Polish
-        'uk',  // Ukrainian
-        'cs',  // Czech
-        'sv',  // Swedish
-        'da',  // Danish
-        'fi',  // Finnish
-        'no',  // Norwegian
-        'hu',  // Hungarian
-        'ro',  // Romanian
-        'el',  // Greek
-        'bg',  // Bulgarian
-        'sr',  // Serbian
-        'hr',  // Croatian
-        'sk',  // Slovak
-        'sl',  // Slovenian
-        'lt',  // Lithuanian
-        'lv',  // Latvian
-        'et'   // Estonian
-    ];
+        return [
+            'en', 'ru', 'de', 'fr', 'es', 'it', 'pt', 'nl', 'pl', 'uk', 'cs', 
+            'sv', 'da', 'fi', 'no', 'hu', 'ro', 'el', 'bg', 'sr', 'hr', 'sk', 
+            'sl', 'lt', 'lv', 'et'
+        ];
     }
 }
 
