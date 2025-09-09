@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"target": "esnext",
-		"module": "esnext",
+		"module": "nodenext",
 		"moduleResolution": "nodenext",
 		"esModuleInterop": true,
 		"strict": true,
@@ -24,10 +24,16 @@
 		"preserveConstEnums": true,
 		"removeComments": false,
 		"sourceMap": true,
-		"lib": ["es2020", "dom"],
+		"lib": [
+			"es2020",
+			"dom"
+		],
 		"skipLibCheck": true,
 		"rootDir": ".",
 		"allowJs": true
 	},
-	"include": ["src/**/*.ts", "src/*.ts"]
+	"include": [
+		"src/**/*.ts",
+		"src/*.ts"
+	]
 }

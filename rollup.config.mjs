@@ -13,7 +13,7 @@ export default glob.sync('src/translators/*.ts').map((filename) => ({
 	treeshake: false,
 	plugins: [
 		commonjs(),
-		typescript(),
+		typescript({ module: 'esnext' }),
 		nodeResolve({
 			browser: true,
 		}),
