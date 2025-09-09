@@ -1,3 +1,3 @@
-import { GoogleTranslatorTokenFree } from '@translate-tools/core/esm/translators/GoogleTranslator';
+import { GoogleTranslatorTokenFree } from 'anylang/translators';
 
 GoogleTranslatorTokenFree;

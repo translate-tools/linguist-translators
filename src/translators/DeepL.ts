@@ -1,4 +1,4 @@
-import { DeepLTranslator as BaseDeepLTranslator, DeepLTranslatorOptions } from '@translate-tools/core/esm/translators/DeepL';
+import { DeepLTranslator as BaseDeepLTranslator, DeepLTranslatorOptions } from 'anylang/translators';
 
 function DeepLTranslator(options: DeepLTranslatorOptions) {
 	// Find your API key on page https://www.deepl.com/account/summary
