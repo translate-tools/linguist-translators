@@ -1,4 +1,4 @@
-import { ChatGPTLLMTranslator as BaseChatGPTTranslator } from 'anylang/translators';
+import { ChatGPTLLMTranslator as BaseChatGPTTranslator } from 'anylang/translators/LLMTranslators/ChatGPTLLMTranslator';
 
 type Options = typeof BaseChatGPTTranslator extends { new(...params: infer T): any } ? T : never;
 
@@ -18,4 +18,4 @@ function ChatGPTTranslator(options: Partial<Options>) {
 
 ChatGPTTranslator.__proto__ = BaseChatGPTTranslator;
 
-ChatGPTTranslator;
+(globalThis as any).translator = ChatGPTTranslator;

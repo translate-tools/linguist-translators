@@ -1,4 +1,4 @@
-import { DeepLTranslator as BaseDeepLTranslator, DeepLTranslatorOptions } from 'anylang/translators';
+import { DeepLTranslator as BaseDeepLTranslator, DeepLTranslatorOptions } from 'anylang/translators/DeepLTranslator';
 
 function DeepLTranslator(options: DeepLTranslatorOptions) {
 	// Find your API key on page https://www.deepl.com/account/summary
@@ -9,4 +9,4 @@ function DeepLTranslator(options: DeepLTranslatorOptions) {
 
 DeepLTranslator.__proto__ = BaseDeepLTranslator;
 
-DeepLTranslator;
+(globalThis as any).translator = DeepLTranslator;

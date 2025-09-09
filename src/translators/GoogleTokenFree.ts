@@ -1,3 +1,3 @@
-import { GoogleTranslatorTokenFree } from 'anylang/translators';
+import { GoogleTranslatorTokenFree } from 'anylang/translators/GoogleTranslator';
 
-GoogleTranslatorTokenFree;
+(globalThis as any).translator = GoogleTranslatorTokenFree;
