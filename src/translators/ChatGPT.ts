@@ -9,13 +9,13 @@ function ChatGPTTranslator(options: Partial<Options>) {
 		apiKey: '',
 
 		// Optional. Custom API endpoint
-		// apiOrigin: 'https://openrouter.ai/api/v1',
+		// baseUrl: 'https://openrouter.ai/api/v1',
 
 		// Optional. Custom model name
 		// model: 'openai/gpt-4o-mini',
 	});
 }
 
-ChatGPTTranslator.__proto__ = BaseChatGPTTranslator.translatorName;
+ChatGPTTranslator.__proto__ = BaseChatGPTTranslator;
 
 ChatGPTTranslator;
