@@ -9,17 +9,39 @@ export default glob.sync("src/translators/*.ts").map((filename) => ({
 	output: {
 		dir: "translators/generated",
 		format: "es",
+		generatedCode: "es2015",
+		exports: "named",
+		hoistTransitiveImports: false,
+		minifyInternalExports: true,
 	},
-	treeshake: true,
+	onwarn(warning, warn) {
+		if (warning.code === "THIS_IS_UNDEFINED") return;
+		if (warning.code === "CIRCULAR_DEPENDENCY") return;
+		warn(warning);
+	},
+	treeshake: {
+		preset: "smallest",
+		moduleSideEffects: false,
+		propertyReadSideEffects: false,
+		tryCatchDeoptimization: false,
+		unknownGlobalSideEffects: false,
+		annotations: true,
+		correctVarValueBeforeDeclaration: true,
+	},
 	plugins: [
-		commonjs(),
-		typescript({
-			target: "esnext",
-			module: "esnext",
-			moduleResolution: "nodenext",
-		}),
 		nodeResolve({
 			browser: true,
+			exportConditions: ["default", "module", "import"],
+		}),
+
+		commonjs(),
+
+		typescript({
+			sourceMap: false,
+			target: "esnext",
+			module: "esnext",
+			moduleResolution: "bundler",
+			outDir: "translators/generated",
 		}),
 	],
 }));

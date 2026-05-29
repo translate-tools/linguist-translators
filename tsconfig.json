@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"target": "es6",
 		"module": "esnext",
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"esModuleInterop": true,
 		"strict": true,
 		"alwaysStrict": true,
@@ -17,7 +17,6 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"declaration": false,
-		"downlevelIteration": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"pretty": true,
