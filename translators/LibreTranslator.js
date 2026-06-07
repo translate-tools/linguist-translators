@@ -6,42 +6,73 @@
 class LibreTranslator {
 	// URL of your instance of LibreTranslate
 	// for local instance use URL "http://localhost/translate"
-	apiPath = 'https://translate.terraprint.co/translate';
+	apiPath = "http://localhost:5000/translate";
 	// Insert API key if you have
-	apiKey = '';
+	apiKey = "";
 
-	translate = (text, from, to) => {
+	translate = async (text, from, to) => {
+		const translations = await this.translateBatch([text], from, to);
+		return translations[0];
+	};
+
+	translateBatch = (texts, from, to) => {
+		// LibreTranslate removes spaces around words
+		// We detect any non-word chars around text, and trim them
+		// After translation of the content we will wrap the translation into trimmed chars
+		const textSegments = texts.map((text) => {
+			const match = text.match(
+				/^(?<start>[^\p{L}\p{N}]*)(?<content>.*?)(?<end>[^\p{L}\p{N}]*)$/su,
+			);
+
+			if (!match) return text;
+
+			const { content, start, end } = match.groups;
+			return { content: content ?? "", start, end };
+		});
+
 		return fetch(this.apiPath, {
-			credentials: 'omit',
+			credentials: "omit",
 			headers: {
-				'User-Agent':
-					'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:99.0) Gecko/20100101 Firefox/99.0',
-				Accept: '*/*',
-				'Accept-Language': 'en-US,en;q=0.5',
-				'Sec-Fetch-Dest': 'empty',
-				'Sec-Fetch-Mode': 'cors',
-				'Sec-Fetch-Site': 'same-origin',
-				'Content-Type': 'application/json',
+				"User-Agent":
+					"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:99.0) Gecko/20100101 Firefox/99.0",
+				Accept: "*/*",
+				"Accept-Language": "en-US,en;q=0.5",
+				"Sec-Fetch-Dest": "empty",
+				"Sec-Fetch-Mode": "cors",
+				"Sec-Fetch-Site": "same-origin",
+				"Content-Type": "application/json",
 			},
-			method: 'POST',
-			mode: 'cors',
+			method: "POST",
+			mode: "cors",
 			body: JSON.stringify({
-				q: text,
+				q: textSegments.map((t) => t.content),
 				source: from,
 				target: to,
-				format: 'text',
+				format: "text",
 				api_key: this.apiKey,
 			}),
 		})
 			.then((r) => r.json())
-			.then(({ translatedText }) => translatedText);
+			.then(({ translatedText }) => {
+				if (typeof translatedText === "string")
+					translatedText = [translatedText];
+				if (!Array.isArray(translatedText))
+					throw new TypeError("Unexpected response");
+
+				if (translatedText.length !== textSegments.length)
+					throw new RangeError(
+						`Translated texts length (${translatedText.length}) does not match requested texts length (${textSegments.length})`,
+					);
+
+				return translatedText.map((content, index) => {
+					const { start, end } = textSegments[index];
+					return start + content + end;
+				});
+			});
 	};
 
-	translateBatch = (texts, from, to) =>
-		Promise.all(texts.map((text) => this.translate(text, from, to)));
-
-	getLengthLimit = () => 4000;
-	getRequestsTimeout = () => 300;
+	getLengthLimit = () => 10_000;
+	getRequestsTimeout = () => 50;
 	checkLimitExceeding = (text) => {
 		const textLength = !Array.isArray(text)
 			? text.length
