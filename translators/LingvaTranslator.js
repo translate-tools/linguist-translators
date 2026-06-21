@@ -9,7 +9,7 @@ class LingvaTranslator {
 	apiPath = 'https://lingva.ml';
 
 	translate = (text, from, to) => {
-		return fetch(`${this.apiPath}/api/v1/${from}/${to}/${text}`, {
+		return fetch(`${this.apiPath}/api/v1/${from}/${to}/${encodeURIComponent(text)}`, {
 			credentials: 'omit',
 			headers: {
 				'User-Agent':
